@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D.cappuccino Café · Nasr City</title>
+<meta name="description" content="D.cappuccino Café, Nasr City. The official café for slowing down: smoke-free, music-free, family friendly, with a kids corner. Menu, hours and directions.">
+<meta name="theme-color" content="#fbf1cf">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preload" as="image" href="images/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=DM+Sans:wght@400;500;700&family=Cairo:wght@400;600;800&family=Reem+Kufi+Fun:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fbf1cf; --cream-2:#fff8e3; --paper:#fffdf6; --butter:#f7d24b; --butter-2:#ffe37a;
+  --ink:#2b1d14; --cocoa:#5a3b28; --muted:#7c6a5a; --pink:#f6d9d6; --line:#e9dcb4;
+  --serif:'Fraunces','Reem Kufi Fun',serif; --sans:'DM Sans','Cairo',system-ui,sans-serif;
+  --r:28px; --ease:cubic-bezier(.2,.75,.25,1); --shadow:0 22px 50px -18px rgba(90,59,40,.35);
+}
+[dir=rtl]{--serif:'Reem Kufi Fun','Cairo',sans-serif; --sans:'Cairo','DM Sans',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.02;letter-spacing:-.02em}
+[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3{letter-spacing:0;line-height:1.35;font-weight:600}
+em{font-style:italic;font-weight:500}
+[dir=rtl] em{font-style:normal}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input{font:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* highlighter swash under key words */
+.mark{position:relative;white-space:nowrap;z-index:0}
+.mark::after{content:"";position:absolute;inset-inline:-4%;bottom:.06em;height:.36em;background:var(--butter);border-radius:40% 60% 50% 45%/60% 40% 60% 40%;z-index:-1;transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .5s}
+[dir=rtl] .mark::after{transform-origin:right}
+.in .mark::after,.hero .mark::after{transform:scaleX(1)}
+.hero .mark::after{transition-delay:1.1s}
+
+.tag{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cocoa)}
+.tag::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--butter);box-shadow:0 0 0 3px var(--ink)}
+[dir=rtl] .tag{letter-spacing:0;font-size:.95rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 28px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:var(--cream-2);font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:4px 4px 0 var(--butter);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--butter)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--butter)}
+.btn.alt{background:var(--paper);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.btn.alt:hover{box-shadow:6px 6px 0 var(--ink)}
+.btn.wa{background:#1f9d55;border-color:#1f9d55;color:#fff;box-shadow:4px 4px 0 var(--ink)}
+
+/* header */
+header{position:fixed;inset-inline:0;top:0;z-index:50;transition:background .35s,box-shadow .35s}
+header.solid{background:rgba(251,241,207,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{display:flex;align-items:center;gap:10px;line-height:1}
+.logo .disc{width:44px;height:44px;border-radius:50%;background:var(--butter-2);border:2px solid var(--ink);display:grid;place-items:center}
+.logo .disc svg{width:26px;height:26px}
+.logo b{font:700 italic 1.5rem 'Fraunces',serif;letter-spacing:-.02em}
+.logo small{display:block;font:600 .72rem 'Cairo',sans-serif;color:var(--cocoa);margin-top:3px}
+.nav-links{display:flex;gap:30px;font-weight:500}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;inset-inline:0;bottom:-4px;height:3px;border-radius:3px;background:var(--butter);transform:scaleX(0);transition:transform .3s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-end{display:flex;gap:12px;align-items:center}
+.lang{background:none;border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font-weight:700;cursor:pointer;color:var(--ink)}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--butter-2);cursor:pointer;position:relative}
+.burger i{position:absolute;inset-inline:12px;height:2px;background:var(--ink);border-radius:2px;transition:transform .4s var(--ease),top .4s var(--ease)}
+.burger i:nth-child(1){top:17px}.burger i:nth-child(2){top:25px}
+.menu-open .burger i:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .burger i:nth-child(2){top:21px;transform:rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:45;background:var(--butter-2);display:grid;align-content:center;justify-items:center;gap:4px;transform:translateY(-100%);transition:transform .6s var(--ease);visibility:hidden}
+.menu-open .mnav{transform:none;visibility:visible}
+.mnav a{font:700 2.6rem/1.35 var(--serif)}
+.mnav .btn{margin-top:22px;font:700 1rem var(--sans)}
+.menu-open{overflow:hidden}
+@media(max-width:900px){.nav-links{display:none}.burger{display:block}.nav-end .btn{display:none}}
+@media(max-width:480px){.logo .disc{width:38px;height:38px}.logo b{font-size:1.2rem}.logo small{font-size:.62rem}.lang{padding:6px 10px;font-size:.85rem}.nav-end{gap:8px}}
+
+/* hero */
+.hero{position:relative;padding:130px 0 70px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(3rem,6.4vw,5.3rem);margin:18px 0 22px}
+[dir=rtl] .hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem)}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:46ch}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.proof{display:flex;gap:26px;margin-top:40px;flex-wrap:wrap;align-items:center}
+.proof div{display:flex;flex-direction:column}
+.proof b{font:700 1.9rem/1 var(--serif);direction:ltr;unicode-bidi:isolate}
+[dir=rtl] .proof b{font-family:'Fraunces',serif}
+.proof span{font-size:.85rem;color:var(--muted)}
+.proof hr{width:2px;height:40px;border:0;background:var(--line)}
+.hero-art{position:relative;justify-self:center;width:min(100%,500px)}
+.arch{position:relative;aspect-ratio:4/5;border-radius:999px 999px var(--r) var(--r);overflow:hidden;border:3px solid var(--ink);background:var(--pink);box-shadow:12px 12px 0 var(--butter)}
+.arch img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:settle 1.6s var(--ease) .3s forwards}
+@keyframes settle{to{transform:scale(1)}}
+.sticker{position:absolute;background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:12px 16px;box-shadow:4px 4px 0 var(--ink);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:10px;animation:bob 5s ease-in-out infinite}
+.sticker svg{width:28px;height:28px;flex:none}
+.sticker small{display:block;font-weight:500;color:var(--muted);font-size:.75rem}
+.s1{top:14%;inset-inline-start:-7%;transform:rotate(-6deg)}
+.s2{bottom:14%;inset-inline-end:-10%;animation-delay:-2.5s}
+.s3{top:-4%;inset-inline-end:6%;background:var(--butter);border-radius:50%;width:96px;height:96px;padding:0;justify-content:center;text-align:center;line-height:1.05;font:700 italic .95rem 'Fraunces',serif;animation:spin 18s linear infinite}
+@keyframes bob{50%{translate:0 -10px}}
+@keyframes spin{to{rotate:360deg}}
+.doodle{position:absolute;pointer-events:none;color:var(--cocoa)}
+.doodle path{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600);transition:stroke-dashoffset 2.2s var(--ease)}
+.drawn .doodle path,.hero .doodle path{stroke-dashoffset:0}
+.hero .doodle path{transition-delay:.8s}
+.d-steam{top:-60px;inset-inline-start:30%;width:120px}
+.d-swirl{bottom:-30px;inset-inline-start:-40px;width:160px}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:60px}.hero-art{width:min(86%,420px)}.s1{inset-inline-start:-8%}.s2{inset-inline-end:-6%}}
+
+/* marquee */
+.ticker{background:var(--ink);color:var(--butter-2);overflow:hidden;padding:16px 0;transform:rotate(-1.2deg);margin:20px -10px}
+.ticker-track{display:flex;width:max-content;animation:tick 32s linear infinite}
+.ticker span{font:700 italic 1.5rem var(--serif);padding:0 26px;white-space:nowrap;display:flex;align-items:center;gap:52px}
+.ticker span::after{content:"☕";font-style:normal;font-size:1.1rem}
+[dir=rtl] .ticker-track{animation-name:tick-rtl}
+@keyframes tick{to{transform:translateX(-50%)}}
+@keyframes tick-rtl{to{transform:translateX(50%)}}
+
+section{padding:110px 0}
+.head{max-width:640px;margin-bottom:50px}
+.head.center{text-align:center;margin-inline:auto}
+.head h2{font-size:clamp(2.4rem,5vw,3.8rem);margin:14px 0 16px}
+[dir=rtl] .head h2{font-size:clamp(2rem,4.2vw,3rem)}
+.head p{color:var(--muted);font-size:1.08rem}
+
+/* why people stay */
+.perks{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.perk{background:var(--paper);border:2px solid var(--ink);border-radius:var(--r);padding:30px 26px;box-shadow:6px 6px 0 var(--ink);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.perk:hover{transform:translate(-3px,-3px) rotate(-1deg);box-shadow:9px 9px 0 var(--ink)}
+.perk:nth-child(2){background:var(--butter-2)}
+.perk:nth-child(3){background:var(--pink)}
+.perk svg{width:52px;height:52px;margin-bottom:18px}
+.perk h3{font-size:1.5rem;margin-bottom:8px}
+.perk p{color:var(--cocoa);font-size:.95rem}
+.perk .n{display:inline-block;margin-top:14px;font-size:.78rem;font-weight:700;background:var(--ink);color:var(--butter-2);border-radius:999px;padding:4px 12px}
+@media(max-width:980px){.perks{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.perks{grid-template-columns:1fr}}
+
+/* signature */
+.madness{background:var(--ink);color:var(--cream-2);border-radius:48px;margin:0 16px;position:relative;overflow:hidden}
+.madness .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.madness .tag{color:var(--butter-2)}
+.madness .tag::before{box-shadow:0 0 0 3px var(--butter-2)}
+.madness h2{font-size:clamp(2.8rem,6vw,5rem);margin:16px 0 18px}
+.madness h2 em{color:var(--butter)}
+.madness p{color:#e4d6c3;font-size:1.08rem;max-width:44ch}
+.flavours{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.flavours button{border:2px solid var(--cream-2);background:transparent;color:var(--cream-2);border-radius:999px;padding:10px 20px;font-weight:700;cursor:pointer;transition:all .25s}
+.flavours button[aria-pressed=true]{background:var(--butter);color:var(--ink);border-color:var(--butter)}
+.plate{position:relative;aspect-ratio:1;border-radius:50%;overflow:hidden;border:3px solid var(--butter);box-shadow:0 0 0 14px rgba(247,210,75,.12),0 0 0 28px rgba(247,210,75,.06)}
+.plate img{width:100%;height:100%;object-fit:cover}
+.plate-ring{position:absolute;inset:-46px;pointer-events:none;animation:spin 30s linear infinite}
+.plate-ring text{font:700 13px 'DM Sans',sans-serif;letter-spacing:5px;fill:var(--butter-2);text-transform:uppercase}
+.plate-wrap{position:relative;width:min(100%,460px);justify-self:center}
+@media(max-width:900px){.madness .wrap{grid-template-columns:1fr;gap:70px}.madness{border-radius:32px;margin:0 10px}}
+
+/* menu */
+.menu-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.menu-photo{position:sticky;top:100px;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--butter);background:var(--pink)}
+.menu-photo img{width:100%;height:100%;object-fit:cover;transition:opacity .35s,transform .6s var(--ease)}
+.menu-photo img.swap{opacity:0;transform:scale(1.04)}
+.menu-photo .label{position:absolute;inset-inline-start:18px;bottom:18px;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:700}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.tab{border:2px solid var(--ink);background:var(--paper);border-radius:999px;padding:9px 18px;font-weight:700;cursor:pointer;color:var(--ink);transition:background .2s,transform .2s}
+.tab:hover{transform:translateY(-2px)}
+.tab[aria-selected=true]{background:var(--butter)}
+.items{display:grid;gap:4px;transition:opacity .25s}
+.items.fade{opacity:0}
+.item{display:flex;gap:16px;align-items:flex-start;padding:18px 4px;border-bottom:2px dashed var(--line)}
+.item .dot{flex:none;width:12px;height:12px;margin-top:9px;border-radius:50%;border:2px solid var(--ink);background:var(--butter-2)}
+.item h3{font-size:1.35rem}
+[dir=rtl] .item h3{font-size:1.15rem}
+.item p{color:var(--muted);font-size:.93rem;margin-top:2px}
+.item .fav{display:inline-block;margin-inline-start:8px;font:700 .7rem var(--sans);background:var(--pink);border:1.5px solid var(--ink);border-radius:999px;padding:2px 9px;vertical-align:middle}
+.menu-note{margin-top:24px;font-size:.85rem;color:var(--muted)}
+@media(max-width:900px){.menu-layout{grid-template-columns:1fr}.menu-photo{position:relative;top:0;aspect-ratio:4/3}}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;grid-auto-flow:dense;gap:16px}
+.gallery figure{position:relative;border-radius:22px;overflow:hidden;border:2px solid var(--ink);background:var(--pink)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.gallery figure:hover img{transform:scale(1.06) rotate(.6deg)}
+/* fixed mosaic so every cell is filled: latte, grill, salad, drink, pasta, interior */
+.gallery{grid-template-areas:"a b b c" "a d e c" "f f f f"}
+.gallery figure:nth-child(1){grid-area:a}.gallery figure:nth-child(2){grid-area:b}.gallery figure:nth-child(3){grid-area:c}
+.gallery figure:nth-child(4){grid-area:d}.gallery figure:nth-child(5){grid-area:e}.gallery figure:nth-child(6){grid-area:f}
+.gallery figure:nth-child(6) img{object-position:center 32%}
+@media(max-width:820px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:170px;grid-template-areas:"a b" "a c" "d e" "f f"}}
+
+/* reviews */
+.reviews{background:var(--butter-2);border-block:2px solid var(--ink)}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{background:var(--paper);border:2px solid var(--ink);border-radius:var(--r);padding:30px;box-shadow:6px 6px 0 var(--ink)}
+.quote:nth-child(2){transform:rotate(1.2deg)}
+.quote:nth-child(3){transform:rotate(-1deg)}
+.quote .qm{font:700 4rem/.6 'Fraunces',serif;color:var(--butter);-webkit-text-stroke:2px var(--ink);height:34px}
+.quote blockquote{font:500 italic 1.35rem/1.35 var(--serif);margin:12px 0 16px}
+[dir=rtl] .quote blockquote{font-style:normal;font-size:1.2rem;line-height:1.7}
+.quote cite{font-style:normal;font-size:.85rem;color:var(--muted)}
+.score{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:44px;flex-wrap:wrap;font-weight:700}
+.score b{font:700 3rem/1 'Fraunces',serif}
+@media(max-width:900px){.quotes{grid-template-columns:1fr}.quote:nth-child(n){transform:none}}
+
+/* visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:stretch}
+.card{background:var(--paper);border:2px solid var(--ink);border-radius:var(--r);padding:36px;box-shadow:8px 8px 0 var(--ink)}
+.card h3{font-size:2rem;margin-bottom:20px}
+.row{display:flex;gap:16px;padding:14px 0;border-bottom:2px dashed var(--line)}
+.row:last-of-type{border-bottom:0}
+.row b{min-width:90px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cocoa);padding-top:3px}
+[dir=rtl] .row b{letter-spacing:0;font-size:.95rem;padding-top:0}
+.card .hero-cta{margin-top:24px}
+.map{border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;min-height:380px;box-shadow:8px 8px 0 var(--butter)}
+.map iframe{width:100%;height:100%;min-height:380px;border:0;filter:sepia(.25) saturate(.9)}
+@media(max-width:900px){.visit-grid{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:#cdbba3;padding:60px 0 30px;margin-top:40px}
+footer .top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12)}
+footer .logo b{color:var(--cream-2)}
+footer .logo small{color:var(--butter-2)}
+footer .social{display:flex;gap:14px;align-items:center;font-weight:700}
+footer .social a:hover{color:var(--butter)}
+footer .ico{width:46px;height:46px;border-radius:50%;background:var(--butter-2);border:2px solid var(--cream-2);display:grid;place-items:center;box-shadow:3px 3px 0 var(--butter);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+footer .ico svg{width:22px;height:22px;fill:var(--ink)}
+footer .ico:hover{transform:translate(-2px,-2px) rotate(-6deg);box-shadow:5px 5px 0 var(--butter)}
+footer .fine{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:22px;font-size:.85rem}
+
+/* floating WhatsApp */
+.fab{position:fixed;inset-inline-end:20px;bottom:20px;z-index:40;width:60px;height:60px;border-radius:50%;background:#1f9d55;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);display:grid;place-items:center;transform:scale(0);transition:transform .45s var(--ease)}
+.fab.show{transform:scale(1)}
+.fab svg{width:28px;height:28px;fill:#fff}
+
+/* loader: a cup that fills */
+#loader{position:fixed;inset:0;z-index:200;background:var(--cream);display:grid;place-items:center;transition:transform .9s cubic-bezier(.76,0,.24,1)}
+#loader.done{transform:translateY(-100%)}
+#loader svg{width:120px}
+#loader .fill{transform-origin:50% 100%;transform:scaleY(0);animation:fill 1.1s var(--ease) .15s forwards}
+@keyframes fill{to{transform:scaleY(1)}}
+#loader .st{stroke-dasharray:40;stroke-dashoffset:40;animation:st 1s ease .9s forwards}
+@keyframes st{to{stroke-dashoffset:0}}
+html:not(.loaded) .hero .rise,html:not(.loaded) .arch img,html:not(.loaded) .sticker{animation-play-state:paused}
+
+/* reveals (opacity/transform only, so the observer always fires) */
+.rise{animation:rise 1s var(--ease) both}
+.rise.d1{animation-delay:.12s}.rise.d2{animation-delay:.24s}.rise.d3{animation-delay:.36s}.rise.d4{animation-delay:.48s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.js .rv{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  #loader{display:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}.doodle path{stroke-dashoffset:0}.mark::after{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <svg viewBox="0 0 120 120" fill="none" stroke="#2b1d14" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path class="st" d="M45 22c-6 8 6 10 0 18M62 18c-6 8 6 10 0 18M79 22c-6 8 6 10 0 18"/>
+    <clipPath id="cup"><path d="M24 50h72v26a30 30 0 0 1-30 30H54a30 30 0 0 1-30-30Z"/></clipPath>
+    <rect class="fill" x="24" y="50" width="72" height="56" fill="#f7d24b" clip-path="url(#cup)" stroke="none"/>
+    <path d="M24 50h72v26a30 30 0 0 1-30 30H54a30 30 0 0 1-30-30Z"/>
+    <path d="M96 58h6a12 12 0 0 1 0 24h-8"/>
+  </svg>
+</div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="D.cappuccino home">
+      <span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#2b1d14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13h18v6a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8Z" fill="#fff8e3"/><path d="M24 15h2a4 4 0 0 1 0 8h-2"/><path d="M12 5c-2 2.5 2 3.5 0 6M18 5c-2 2.5 2 3.5 0 6"/></svg></span>
+      <span><b>D.cappuccino</b><small>دي كابتشينو كافيه</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#why" data-i="nWhy">Why us</a>
+      <a href="#menu" data-i="nMenu">Menu</a>
+      <a href="#gallery" data-i="nGal">Gallery</a>
+      <a href="#visit" data-i="nVisit">Visit</a>
+    </nav>
+    <div class="nav-end">
+      <button class="lang" id="langBtn">العربية</button>
+      <a href="#visit" class="btn" data-i="ctaVisit">Visit us</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav">
+  <a href="#why" data-i="nWhy">Why us</a>
+  <a href="#menu" data-i="nMenu">Menu</a>
+  <a href="#gallery" data-i="nGal">Gallery</a>
+  <a href="#visit" data-i="nVisit">Visit</a>
+  <a href="tel:+201110002911" class="btn" data-i="call">Call us</a>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag rise" data-i="heroTag">Nasr City · Abbas El Akkad</span>
+      <h1 class="rise d1"><span data-i="h1a">The official café for</span> <span class="mark" data-i="h1b">slowing down</span></h1>
+      <p class="lead rise d2" data-i="lead">No smoke, no loud music, just good coffee, generous plates and a corner for the kids. Pull up a chair and stay a while.</p>
+      <div class="hero-cta rise d3">
+        <a href="#menu" class="btn" data-i="ctaMenu">See the menu</a>
+        <a href="#visit" class="btn alt" data-i="ctaFind">Find us</a>
+      </div>
+      <div class="proof rise d4">
+        <div><b>4.5★</b><span data-i="p1">Google rating</span></div><hr>
+        <div><b>3,790</b><span data-i="p2">reviews</span></div><hr>
+        <div><b>144K</b><span data-i="p3">Facebook family</span></div>
+      </div>
+    </div>
+    <div class="hero-art rise d2">
+      <svg class="doodle d-steam" viewBox="0 0 120 90" aria-hidden="true"><path style="--len:200" d="M30 85c-14-18 14-24 0-44S30 10 30 4M60 85c-14-18 14-24 0-44S60 10 60 4M90 85c-14-18 14-24 0-44S90 10 90 4"/></svg>
+      <div class="arch"><img src="images/hero.jpg" alt="Shrimp noodles at D.cappuccino" onerror="this.style.visibility='hidden'"></div>
+      <div class="sticker s1"><svg viewBox="0 0 32 32" fill="none" stroke="#2b1d14" stroke-width="2.2" stroke-linecap="round"><circle cx="16" cy="16" r="12"/><path d="M8 24 24 8M10 17h10v3H10z"/></svg><span><span data-i="st1">Smoke-free</span><small data-i="st1s">every table, every hour</small></span></div>
+      <div class="sticker s2"><svg viewBox="0 0 32 32" fill="#f7d24b" stroke="#2b1d14" stroke-width="2"><path d="m16 4 3.6 7.6 8.4 1-6.2 5.8 1.6 8.3L16 22.6l-7.4 4.1 1.6-8.3L4 12.6l8.4-1Z"/></svg><span>4.5 / 5<small data-i="st2s">3,790 Google reviews</small></span></div>
+      <div class="sticker s3" data-i="st3">so<br>cozy!</div>
+      <svg class="doodle d-swirl" viewBox="0 0 160 80" aria-hidden="true"><path style="--len:400" d="M6 60c30-50 60 20 80-10s50-30 68 0"/></svg>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="tk"></div></div>
+
+<section id="why">
+  <div class="wrap">
+    <div class="head center">
+      <span class="tag rv" data-i="whyTag">Why people stay</span>
+      <h2 class="rv"><span data-i="whyT1">Made for</span> <span class="mark" data-i="whyT2">long, easy</span> <span data-i="whyT3">afternoons</span></h2>
+      <p class="rv" data-i="whyP">The things guests mention again and again in their reviews.</p>
+    </div>
+    <div class="perks">
+      <div class="perk rv"><svg viewBox="0 0 52 52" fill="none" stroke="#2b1d14" stroke-width="2.5" stroke-linecap="round"><circle cx="26" cy="26" r="20"/><path d="m12 40 28-28M15 27h18v5H15z"/></svg><h3 data-i="k1">Smoke-free</h3><p data-i="k1p">Fresh air at every table. Bring your parents, bring your little ones.</p></div>
+      <div class="perk rv" style="--d:.1s"><svg viewBox="0 0 52 52" fill="none" stroke="#2b1d14" stroke-width="2.5" stroke-linecap="round"><path d="M18 36V14l20-5v22"/><circle cx="13" cy="36" r="5"/><circle cx="33" cy="31" r="5"/><path d="M6 6l40 40"/></svg><h3 data-i="k2">Quiet, no music</h3><p data-i="k2p">Hear your friends, finish your book, actually talk.</p><span class="n" data-i="k2n">"quiet place" · 99 reviews</span></div>
+      <div class="perk rv" style="--d:.2s"><svg viewBox="0 0 52 52" fill="none" stroke="#2b1d14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="26" cy="13" r="6"/><path d="M14 46l4-18h16l4 18M18 28l-8-8M34 28l8-8"/></svg><h3 data-i="k3">Kids corner</h3><p data-i="k3p">A play area so parents can sip their coffee while it's still hot.</p><span class="n" data-i="k3n">"kids area" · 45 reviews</span></div>
+      <div class="perk rv" style="--d:.3s"><svg viewBox="0 0 52 52" fill="none" stroke="#2b1d14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M26 44S8 33 8 20a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 13-18 24-18 24Z"/></svg><h3 data-i="k4">Family friendly</h3><p data-i="k4p">Respectful, relaxed and welcoming for every kind of gathering.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="madness" id="madness">
+  <div class="wrap">
+    <div>
+      <span class="tag rv" data-i="mTag">House signature</span>
+      <h2 class="rv"><span data-i="mT1">Cheese</span> <em data-i="mT2">Madness</em></h2>
+      <p class="rv" data-i="mP">Our over-the-top cheesecake, piled high and drenched in your favourite topping. The dessert regulars come back for.</p>
+      <div class="flavours rv" id="flavours">
+        <button aria-pressed="true" data-i="f1">Caramel</button>
+        <button aria-pressed="false" data-i="f2">Chocolate</button>
+        <button aria-pressed="false" data-i="f3">Raspberry</button>
+      </div>
+    </div>
+    <div class="plate-wrap rv">
+      <svg class="plate-ring" viewBox="0 0 552 552" aria-hidden="true"><defs><path id="ring" d="M276 276m-250 0a250 250 0 1 1 500 0a250 250 0 1 1-500 0"/></defs><text><textPath href="#ring">· cheese madness · caramel · chocolate · raspberry · cheese madness · caramel · chocolate · raspberry </textPath></text></svg>
+      <div class="plate"><img style="object-position:38% 55%" src="images/madness.jpg" alt="D.cappuccino cheesecake" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag rv" data-i="menuTag">The menu</span>
+      <h2 class="rv"><span data-i="menuT1">Something good,</span> <span class="mark" data-i="menuT2">all day</span></h2>
+      <p class="rv" data-i="menuP">From an oriental breakfast to a creamy pasta and a Lotus milkshake. Here are a few favourites.</p>
+    </div>
+    <div class="menu-layout">
+      <div class="menu-photo rv"><img id="menuImg" src="images/breakfast.jpg" alt="" onerror="this.style.visibility='hidden'"><span class="label" id="menuLabel"></span></div>
+      <div>
+        <div class="tabs" id="tabs" role="tablist"></div>
+        <div class="items" id="items"></div>
+        <p class="menu-note" data-i="menuNote">Dishes are from D.cappuccino's menu. Ask in store or call for today's prices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" style="padding-top:40px">
+  <div class="wrap">
+    <div class="head center">
+      <span class="tag rv" data-i="galTag">Gallery</span>
+      <h2 class="rv"><span data-i="galT1">Straight from</span> <span class="mark" data-i="galT2">our kitchen</span></h2>
+    </div>
+    <div class="gallery" id="gal">
+      <figure class="tall rv"><img src="images/latte.jpg" alt="Latte art" loading="lazy" onerror="this.style.visibility='hidden'"></figure>
+      <figure class="wide rv" style="--d:.08s"><img src="images/grill.jpg" alt="Mixed grill platter" loading="lazy" onerror="this.style.visibility='hidden'"></figure>
+      <figure class="rv" style="--d:.16s"><img src="images/salad.jpg" alt="Hawaii salad with apple and chicken" loading="lazy" onerror="this.style.visibility='hidden'"></figure>
+      <figure class="tall rv" style="--d:.24s"><img src="images/drink.jpg" alt="Fresh drink" loading="lazy" onerror="this.style.visibility='hidden'"></figure>
+      <figure class="rv" style="--d:.1s"><img src="images/pasta.jpg" alt="Pesto fusilli with chicken" loading="lazy" onerror="this.style.visibility='hidden'"></figure>
+      <figure class="wide rv" style="--d:.18s"><img src="images/interior.jpg" alt="Inside D.cappuccino" loading="lazy" onerror="this.style.visibility='hidden'"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="wrap">
+    <div class="head center">
+      <span class="tag rv" data-i="revTag">Kind words</span>
+      <h2 class="rv" data-i="revT">What our guests say</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote rv"><div class="qm" aria-hidden="true">“</div><blockquote data-i="q1">“No smoking, super respectful for conservative people.”</blockquote><cite data-i="c1">Google review</cite></div>
+      <div class="quote rv" style="--d:.1s"><div class="qm" aria-hidden="true">“</div><blockquote data-i="q2">“Incredible place… the food is incredible!!”</blockquote><cite data-i="c2">Google review</cite></div>
+      <div class="quote rv" style="--d:.2s"><div class="qm" aria-hidden="true">“</div><blockquote data-i="q3">“The food and drinks are delicious and with a reasonable price.”</blockquote><cite data-i="c3">Tripadvisor review</cite></div>
+    </div>
+    <div class="score rv"><b>4.5</b><span data-i="scoreT">out of 5 from 3,790 Google reviews</span></div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag rv" data-i="vTag">Visit</span>
+      <h2 class="rv"><span data-i="vT1">Your table is</span> <span class="mark" data-i="vT2">waiting</span></h2>
+    </div>
+    <div class="visit-grid">
+      <div class="card rv">
+        <h3>D.cappuccino Café</h3>
+        <div class="row"><b data-i="addr">Address</b><span data-i="addrV">51 Ahmed Kasem Gouda St, first street off Abbas El Akkad (Ibn El Haytham), Nasr City, Cairo</span></div>
+        <div class="row"><b data-i="hours">Hours</b><span data-i="hoursV">Open daily, until 11:30 PM</span></div>
+        <div class="row"><b data-i="phone">Phone</b><a href="tel:+201110002911" dir="ltr">011 1000 2911</a></div>
+        <div class="row"><b data-i="also">Also</b><span data-i="alsoV">Dine-in · Takeaway · No-contact delivery</span></div>
+        <div class="hero-cta">
+          <a class="btn" href="tel:+201110002911" data-i="call">Call us</a>
+          <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/201110002911" data-i="wa">WhatsApp</a>
+          <a class="btn alt" target="_blank" rel="noopener" href="https://www.google.com/maps/search/D.Cappuccino+Nasr+City" data-i="dir">Directions</a>
+        </div>
+      </div>
+      <div class="map rv" style="--d:.1s"><iframe title="Map to D.cappuccino" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=D.Cappuccino%20Cafe%2C%20Nasr%20City&output=embed"></iframe></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a href="#top" class="logo"><span class="disc"><svg viewBox="0 0 32 32" fill="none" stroke="#2b1d14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13h18v6a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8Z" fill="#fff8e3"/><path d="M24 15h2a4 4 0 0 1 0 8h-2"/><path d="M12 5c-2 2.5 2 3.5 0 6M18 5c-2 2.5 2 3.5 0 6"/></svg></span><span><b>D.cappuccino</b><small>الكافيه الرسمي للروقان</small></span></a>
+      <div class="social">
+        <a class="ico" target="_blank" rel="noopener" href="https://www.facebook.com/D.Cappuccino.cafe/" aria-label="D.cappuccino on Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21Z"/></svg></a>
+        <a class="ico" target="_blank" rel="noopener" href="https://www.instagram.com/d.cappuccinocafe/" aria-label="D.cappuccino on Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM12 4.6c2.4 0 2.7 0 3.6.1 2.4.1 3.6 1.3 3.7 3.7.1.9.1 1.2.1 3.6s0 2.7-.1 3.6c-.1 2.4-1.3 3.6-3.7 3.7-.9.1-1.2.1-3.6.1s-2.7 0-3.6-.1c-2.4-.1-3.6-1.3-3.7-3.7-.1-.9-.1-1.2-.1-3.6s0-2.7.1-3.6c.1-2.4 1.3-3.6 3.7-3.7.9-.1 1.2-.1 3.6-.1ZM12 3c-2.4 0-2.8 0-3.7.1C5 3.2 3.2 5 3.1 8.3 3 9.2 3 9.6 3 12s0 2.8.1 3.7c.1 3.3 1.9 5.1 5.2 5.2.9.1 1.3.1 3.7.1s2.8 0 3.7-.1c3.3-.1 5.1-1.9 5.2-5.2.1-.9.1-1.3.1-3.7s0-2.8-.1-3.7C20.8 5 19 3.2 15.7 3.1 14.8 3 14.4 3 12 3Z"/></svg></a>
+        <a href="tel:+201110002911" dir="ltr">011 1000 2911</a>
+      </div>
+    </div>
+    <div class="fine">
+      <span>© D.cappuccino Café · Nasr City</span>
+      <span data-i="demo">Design concept by Muhammed Hesham · not the official website</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" id="fab" target="_blank" rel="noopener" href="https://wa.me/201110002911" aria-label="WhatsApp D.cappuccino">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+</a>
+
+<script>
+const T = {
+  en:{nWhy:"Why us",nMenu:"Menu",nGal:"Gallery",nVisit:"Visit",ctaVisit:"Visit us",call:"Call us",
+    heroTag:"Nasr City · Abbas El Akkad",h1a:"The official café for",h1b:"slowing down",
+    lead:"No smoke, no loud music, just good coffee, generous plates and a corner for the kids. Pull up a chair and stay a while.",
+    ctaMenu:"See the menu",ctaFind:"Find us",p1:"Google rating",p2:"reviews",p3:"Facebook family",
+    st1:"Smoke-free",st1s:"every table, every hour",st2s:"3,790 Google reviews",st3:"so cozy!",
+    ticker:["Cheese Madness","Lotus milkshake","Oriental breakfast","Smoke-free","Kids corner","Shrimp noodles","Iced latte"],
+    whyTag:"Why people stay",whyT1:"Made for",whyT2:"long, easy",whyT3:"afternoons",whyP:"The things guests mention again and again in their reviews.",
+    k1:"Smoke-free",k1p:"Fresh air at every table. Bring your parents, bring your little ones.",
+    k2:"Quiet, no music",k2p:"Hear your friends, finish your book, actually talk.",k2n:"\"quiet place\" · 99 reviews",
+    k3:"Kids corner",k3p:"A play area so parents can sip their coffee while it's still hot.",k3n:"\"kids area\" · 45 reviews",
+    k4:"Family friendly",k4p:"Respectful, relaxed and welcoming for every kind of gathering.",
+    mTag:"House signature",mT1:"Cheese",mT2:"Madness",mP:"Our over-the-top cheesecake, piled high and drenched in your favourite topping. The dessert regulars come back for.",
+    f1:"Caramel",f2:"Chocolate",f3:"Raspberry",
+    menuTag:"The menu",menuT1:"Something good,",menuT2:"all day",menuP:"From an oriental breakfast to a creamy pasta and a Lotus milkshake. Here are a few favourites.",
+    menuNote:"Dishes are from D.cappuccino's menu. Ask in store or call for today's prices.",
+    galTag:"Gallery",galT1:"Straight from",galT2:"our kitchen",
+    revTag:"Kind words",revT:"What our guests say",
+    q1:"“No smoking, super respectful for conservative people.”",q2:"“Incredible place… the food is incredible!!”",q3:"“The food and drinks are delicious and with a reasonable price.”",
+    c1:"Google review",c2:"Google review",c3:"Tripadvisor review",scoreT:"out of 5 from 3,790 Google reviews",
+    vTag:"Visit",vT1:"Your table is",vT2:"waiting",addr:"Address",addrV:"51 Ahmed Kasem Gouda St, first street off Abbas El Akkad (Ibn El Haytham), Nasr City, Cairo",
+    hours:"Hours",hoursV:"Open daily, until 11:30 PM",phone:"Phone",also:"Also",alsoV:"Dine-in · Takeaway · No-contact delivery",wa:"WhatsApp",dir:"Directions",
+    demo:"Design concept by Muhammed Hesham · not the official website",fav:"favourite",
+    cats:{breakfast:"Breakfast",pasta:"Pasta",mains:"Mains",salads:"Salads",desserts:"Desserts",coffee:"Coffee",cold:"Shakes & cold"}},
+  ar:{nWhy:"ليه إحنا",nMenu:"المنيو",nGal:"الصور",nVisit:"زورونا",ctaVisit:"زورونا",call:"اتصل بينا",
+    heroTag:"مدينة نصر · عباس العقاد",h1a:"الكافيه الرسمي",h1b:"للروقان",
+    lead:"مفيش سجاير ولا مزيكا عالية، بس قهوة حلوة وأطباق تشبّع وركن للأطفال. اقعد وخد راحتك.",
+    ctaMenu:"شوف المنيو",ctaFind:"مكاننا",p1:"تقييم جوجل",p2:"تقييم",p3:"متابع على فيسبوك",
+    st1:"ممنوع التدخين",st1s:"في كل وقت وكل ترابيزة",st2s:"٣٬٧٩٠ تقييم على جوجل",st3:"رايق!",
+    ticker:["تشيز مادنس","ميلك شيك لوتس","فطار شرقي","ممنوع التدخين","ركن أطفال","نودلز جمبري","آيس لاتيه"],
+    whyTag:"ليه الناس بتحب تقعد",whyT1:"معمول",whyT2:"للقعدة الحلوة",whyT3:"الطويلة",whyP:"الحاجات اللي الزوار بيكرروها في تقييماتهم.",
+    k1:"ممنوع التدخين",k1p:"هوا نضيف في كل ترابيزة. هات أهلك وهات ولادك.",
+    k2:"هادي ومن غير مزيكا",k2p:"اسمع صحابك، كمّل كتابك، واتكلموا براحتكم.",k2n:"«مكان هادي» · ٩٩ تقييم",
+    k3:"ركن أطفال",k3p:"مكان للعب عشان الأهل يشربوا قهوتهم وهي لسه سخنة.",k3n:"«منطقة أطفال» · ٤٥ تقييم",
+    k4:"مناسب للعائلات",k4p:"محترم ورايق ومرحب بكل أنواع اللمّة.",
+    mTag:"الأشهر عندنا",mT1:"تشيز",mT2:"مادنس",mP:"التشيز كيك المجنونة بتاعتنا، عالية ومغرقة بالصوص اللي تحبه. الحلو اللي الزباين بيرجعوا عشانه.",
+    f1:"كراميل",f2:"شوكولاتة",f3:"توت",
+    menuTag:"المنيو",menuT1:"حاجة حلوة",menuT2:"طول اليوم",menuP:"من الفطار الشرقي للباستا الكريمي وميلك شيك اللوتس. دي شوية من المفضلين.",
+    menuNote:"الأطباق من منيو دي كابتشينو. اسأل في المكان أو اتصل لأسعار النهارده.",
+    galTag:"الصور",galT1:"طالع",galT2:"من مطبخنا",
+    revTag:"كلام حلو",revT:"زوارنا بيقولوا إيه",
+    q1:"«ممنوع التدخين، ومحترم جداً للعائلات المحافظة.»",q2:"«مكان رائع… والأكل تحفة!!»",q3:"«الأكل والمشروبات لذيذة وبسعر معقول.»",
+    c1:"تقييم جوجل",c2:"تقييم جوجل",c3:"تقييم تريب أدفايزر",scoreT:"من ٥ من ٣٬٧٩٠ تقييم على جوجل",
+    vTag:"زورونا",vT1:"ترابيزتك",vT2:"مستنياك",addr:"العنوان",addrV:"٥١ ش أحمد قاسم جودة، أول شارع ابن الهيثم المتفرع من عباس العقاد، مدينة نصر، القاهرة",
+    hours:"المواعيد",hoursV:"يومياً لحد ١١:٣٠ مساءً",phone:"الهاتف",also:"كمان",alsoV:"أكل في المكان · تيك أواي · دليفري",wa:"واتساب",dir:"الاتجاهات",
+    demo:"تصميم تجريبي من محمد هشام · ليس الموقع الرسمي",fav:"مفضل",
+    cats:{breakfast:"الفطار",pasta:"باستا",mains:"أطباق رئيسية",salads:"سلطات",desserts:"حلويات",coffee:"قهوة",cold:"ميلك شيك وساقع"}}
+};
+/* dishes from D.cappuccino's published menu (elmenus); prices left off since they change */
+const MENU = {
+  breakfast:{img:"images/breakfast.jpg",items:[
+    {en:["Oriental Breakfast","Foul, falafel, omelette, mozzarella mashed-potato tagine, feta salad, baladi bread"],ar:["فطار شرقي","فول، طعمية، أومليت، طاجن بيوريه بالموتزاريلا، جبنة فيتا بالخيار والطماطم، عيش بلدي"],fav:1},
+    {en:["Breakfast","Omelette, feta cheese, potatoes, toast and tea"],ar:["فطار","أومليت، جبنة فيتا، بطاطس، توست وشاي"]},
+    {en:["Classic Omelette","Pepperoni omelette, spicy fries, toast, salad and cocktail sauce"],ar:["أومليت كلاسيك","أومليت بيبروني، بطاطس سبايسي، توست، سلطة وكوكتيل صوص"]},
+    {en:["Club Sandwich","Turkey, cheddar, pickles, mayo, fries and toast"],ar:["كلوب ساندوتش","تركي، شيدر، مخلل، مايونيز، بطاطس وتوست"]}]},
+  pasta:{img:"images/pasta.jpg",items:[
+    {en:["Alfredo Pasta","Creamy white sauce with chicken"],ar:["باستا ألفريدو","صوص أبيض كريمي بالفراخ"],fav:1},
+    {en:["Negresco Pasta","Baked, golden and cheesy"],ar:["باستا نجرسكو","في الفرن، دهبية ومليانة جبنة"]},
+    {en:["Shrimp Noodles","Wok-tossed noodles with shrimp and vegetables"],ar:["نودلز جمبري","نودلز مقلبة مع جمبري وخضار"],fav:1},
+    {en:["Quattro Formaggi","Four cheeses, one very happy bowl"],ar:["كواترو فورماجي","أربع أنواع جبنة في طبق واحد"]},
+    {en:["Seafood Pasta","Shrimp, calamari and creamy sauce"],ar:["باستا سي فود","جمبري، كاليماري وصوص كريمي"]}]},
+  mains:{img:"images/grill.jpg",items:[
+    {en:["Mix Grill","Kofta, tawook and grilled chicken with rice and fries"],ar:["ميكس جريل","كفتة، طاووق وفراخ مشوية مع أرز وبطاطس"],fav:1},
+    {en:["Beef Stroganoff","Tender beef in a creamy mushroom sauce"],ar:["بيف ستروجانوف","لحم طري في صوص مشروم كريمي"]},
+    {en:["Mushroom Piccata","Chicken, mushroom and lemon-butter sauce"],ar:["مشروم بيكاتا","فراخ، مشروم وصوص ليمون بالزبدة"]},
+    {en:["Cordon Bleu","Crispy chicken stuffed with turkey and cheese"],ar:["كوردن بلو","فراخ مقرمشة محشية تركي وجبنة"]},
+    {en:["Shish Tawook Fattah","Rice, crispy bread, garlic sauce and tawook"],ar:["فتة شيش طاووق","أرز، عيش محمص، صوص ثوم وطاووق"]}]},
+  salads:{img:"images/salad.jpg",items:[
+    {en:["Hawaii Salad","Apple, grilled chicken, sweet corn and coloured peppers"],ar:["سلطة هاواي","تفاح، فراخ مشوية، ذرة وفلفل ألوان"],fav:1},
+    {en:["Chicken Caesar Salad","Grilled chicken, turkey, caesar sauce and iceberg"],ar:["سلطة سيزر بالفراخ","فراخ مشوية، تركي، صوص سيزر وخس آيسبرج"]},
+    {en:["D. Cappuccino Salad","Pasta, chicken, turkey, roast beef, corn and pesto"],ar:["سلطة دي كابتشينو","باستا، فراخ، تركي، روستو، ذرة وبيستو"]},
+    {en:["Greek Salad","Cucumber, tomatoes, olives, peppers and olive oil"],ar:["سلطة يوناني","خيار، طماطم، زيتون، فلفل وزيت زيتون"]},
+    {en:["Rocca Salad","Arugula and mushrooms"],ar:["سلطة جرجير","جرجير ومشروم"]}]},
+  desserts:{img:"images/brownie.jpg",items:[
+    {en:["Cheese Madness","Caramel, chocolate or raspberry"],ar:["تشيز مادنس","كراميل، شوكولاتة أو توت"],fav:1},
+    {en:["Dark Molten Cake","Warm chocolate heart"],ar:["دارك مولتن كيك","قلب شوكولاتة سخن"]},
+    {en:["Waffle","Crisp, warm, with your favourite topping"],ar:["وافل","مقرمش وسخن بالصوص اللي تحبه"]},
+    {en:["Coffee Toffee Ice Cream","Two of our favourite things"],ar:["آيس كريم كوفي توفي","اتنين من أحلى الحاجات"]}]},
+  coffee:{img:"images/latte.jpg",items:[
+    {en:["Cappuccino","The one we're named after"],ar:["كابتشينو","اللي اتسمينا على اسمه"],fav:1},
+    {en:["Lotus Coffee","Espresso, milk and Lotus biscuit"],ar:["لوتس كوفي","إسبريسو، لبن وبسكوت لوتس"]},
+    {en:["Nutella Turkish Coffee","A sweet twist on a classic"],ar:["قهوة تركي بالنوتيلا","لمسة حلوة على الكلاسيك"]},
+    {en:["Cortado","Espresso cut with warm milk"],ar:["كورتادو","إسبريسو مع لبن سخن"]},
+    {en:["Sahleb with Fruits","Warm, creamy, winter in a cup"],ar:["سحلب بالفواكه","سخن وكريمي، الشتا في كوباية"]}]},
+  cold:{img:"images/drink.jpg",items:[
+    {en:["Lotus Milkshake","Thick, sweet, crunchy"],ar:["ميلك شيك لوتس","تقيل وحلو ومقرمش"],fav:1},
+    {en:["Caramel Frappuccino","Iced, blended, topped with cream"],ar:["فرابتشينو كراميل","ساقع ومخفوق بالكريمة"]},
+    {en:["Pink Drink","A house cocktail that looks as good as it tastes"],ar:["بينك درينك","كوكتيل البيت، شكله زي طعمه"]},
+    {en:["Mango Smoothie","Fresh mango, blended thick"],ar:["سموذي مانجا","مانجا فريش مخفوقة تقيلة"]},
+    {en:["Iced Latte","Cold, smooth, simple"],ar:["آيس لاتيه","ساقع وناعم وبسيط"]}]}
+};
+let lang="en", cat="breakfast";
+const $=s=>document.querySelector(s);
+const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function applyLang(){
+  const t=T[lang];
+  document.documentElement.lang=lang; document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+  $("#langBtn").textContent=lang==="ar"?"English":"العربية";
+  document.querySelectorAll("[data-i]").forEach(e=>{const v=t[e.dataset.i]; if(typeof v==="string")e.textContent=v;});
+  const w=t.ticker.map(x=>`<span>${x}</span>`).join(""); $("#tk").innerHTML=w+w+w+w;
+  renderTabs(); renderMenu(false);
+}
+function renderTabs(){
+  $("#tabs").innerHTML=Object.keys(MENU).map(k=>`<button class="tab" role="tab" aria-selected="${k===cat}" data-k="${k}">${T[lang].cats[k]}</button>`).join("");
+  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{if(b.dataset.k===cat)return;cat=b.dataset.k;renderTabs();renderMenu(true);});
+}
+function renderMenu(animate){
+  const t=T[lang], c=MENU[cat], el=$("#items"), img=$("#menuImg");
+  const draw=()=>{
+    el.innerHTML=c.items.map(i=>`<div class="item"><span class="dot"></span><div><h3>${i[lang][0]}${i.fav?`<span class="fav">♥ ${t.fav}</span>`:""}</h3><p>${i[lang][1]}</p></div></div>`).join("");
+    if(!img.src.endsWith(c.img)){img.style.visibility="";img.src=c.img;}
+    img.alt=t.cats[cat]; $("#menuLabel").textContent=t.cats[cat];
+    el.classList.remove("fade"); img.classList.remove("swap");
+  };
+  if(!animate)return draw();
+  el.classList.add("fade"); img.classList.add("swap"); setTimeout(draw,260);
+}
+$("#langBtn").onclick=()=>{lang=lang==="en"?"ar":"en";applyLang();};
+
+/* Cheese Madness flavour pills */
+document.querySelectorAll("#flavours button").forEach(b=>b.onclick=()=>document.querySelectorAll("#flavours button").forEach(x=>x.setAttribute("aria-pressed",x===b)));
+
+/* mobile menu */
+const burger=$("#burger");
+const setMenu=o=>{document.documentElement.classList.toggle("menu-open",o);burger.setAttribute("aria-expanded",o);};
+burger.onclick=()=>setMenu(!document.documentElement.classList.contains("menu-open"));
+document.querySelectorAll("#mnav a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false);});
+
+/* reveal on scroll; also draws the hand-drawn doodles and highlighter marks */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in","drawn");io.unobserve(en.target);}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+
+/* header + floating WhatsApp */
+const hdr=$("#hdr"), fab=$("#fab");
+const onScroll=()=>{hdr.classList.toggle("solid",scrollY>30);fab.classList.toggle("show",scrollY>innerHeight*.7);};
+addEventListener("scroll",onScroll,{passive:true}); onScroll();
+
+/* loader: let the cup fill, then lift */
+const t0=performance.now();
+function lift(){
+  if(document.documentElement.classList.contains("loaded"))return;
+  setTimeout(()=>{$("#loader").classList.add("done");document.documentElement.classList.add("loaded");},Math.max(0,1300-(performance.now()-t0)));
+}
+if(still)lift(); else{addEventListener("load",lift); setTimeout(lift,3200);}
+
+applyLang();
+</script>
+</body>
+</html>
